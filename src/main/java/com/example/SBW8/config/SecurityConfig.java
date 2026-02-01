@@ -1,6 +1,7 @@
 package com.example.SBW8.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.security.autoconfigure.web.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -32,6 +33,9 @@ public class SecurityConfig {
 			.authorizeHttpRequests(auth -> auth
 				.requestMatchers("/register").permitAll()
 				.requestMatchers("/login").permitAll()
+				.requestMatchers(PathRequest.toH2Console()).permitAll()
+				.requestMatchers("/swagger-ui/**").permitAll()
+	            .requestMatchers("/v3/api-docs/**").permitAll()
 				.anyRequest().authenticated()
 			)
 			.sessionManagement(session -> session
