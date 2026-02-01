@@ -20,7 +20,7 @@ COPY src ./src
 RUN mvn -B clean package -DskipTests
 
 # ---------- Runtime Stage ----------
-FROM eclipse-temurin:21-jre
+FROM eclipse-temurin:25-jre
 
 WORKDIR /app
 
@@ -32,3 +32,4 @@ EXPOSE 8081
 
 # Run the Spring Boot app
 ENTRYPOINT ["java", "-jar", "app.jar"]
+
