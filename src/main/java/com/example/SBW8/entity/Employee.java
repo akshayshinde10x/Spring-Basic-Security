@@ -1,9 +1,11 @@
 package com.example.SBW8.entity;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Entity;
@@ -28,9 +30,10 @@ public class Employee implements UserDetails {
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
+		SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + this.getRole());
+        return List.of(authority);
 	}
+	
 	@Override
 	public @Nullable String getPassword() {
 		return password;
